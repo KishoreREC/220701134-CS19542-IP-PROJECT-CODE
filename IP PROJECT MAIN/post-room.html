@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Room</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>/* Reset some basic styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    /* Navbar styling */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #4CAF50;
+        padding: 1rem;
+    }
+    
+    .navbar-logo h1 {
+        color: white;
+        font-size: 1.5rem;
+    }
+    
+    .navbar-links a {
+        color: white;
+        text-decoration: none;
+        margin: 0 1rem;
+        font-size: 1rem;
+    }
+    
+    .navbar-links a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Form container */
+    .form-container {
+        max-width: 500px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+        color: #333;
+    }
+    
+    /* Form elements */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    input[type="file"],
+    select {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f4f4f4;
+    }
+    
+    input:focus,
+    select:focus {
+        border-color: #4CAF50;
+        outline: none;
+        background-color: #fff;
+        box-shadow: 0px 0px 5px rgba(0, 255, 0, 0.2);
+    }
+    
+    button[type="submit"] {
+        padding: 0.8rem;
+        font-size: 1.2rem;
+        color: white;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    
+    /* Form responsiveness */
+    @media (max-width: 768px) {
+        .form-container {
+            width: 90%;
+            padding: 1.5rem;
+        }
+    
+        .navbar-logo h1 {
+            font-size: 1.2rem;
+        }
+    
+        .navbar-links a {
+            font-size: 0.9rem;
+        }
+    }
+    </style>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <h1>Roomie Match</h1>
+        </div>
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+    </nav>
+
+    <!-- Form for User Input -->
+    <div class="form-container">
+        <h2>Post a Room for Rent</h2>
+        <form id="roomForm">
+            <input type="text" id="name" placeholder="Your Name" required><br/>
+            <input type="text" id="block" placeholder="Block/Building name/Floor number" required><br/>
+            <input type="text" id="street" placeholder="Street" required><br/>
+            <input type="text" id="area" placeholder="Area" required><br/>
+            <input type="text" id="city" placeholder="City" required><br/>
+            <input type="text" id="landmark" placeholder="Landmark" required><br/>
+            <label for="state">Choose your state:</label>
+            <select id="location" name="state">
+              <option value="andhra pradesh">Andhra Pradesh</option>
+              <option value="arunachal pradesh">Arunachal Pradesh</option>
+              <option value="assam">Assam</option>
+              <option value="bihar">Bihar</option>
+              <option value="chhattisgarh">Chhattisgarh</option>
+              <option value="goa">Goa</option>
+              <option value="gujarat">Gujarat</option>
+              <option value="haryana">Haryana</option>
+              <option value="himachal pradesh">Himachal Pradesh</option>
+              <option value="jharkhand">Jharkhand</option>
+              <option value="karnataka">Karnataka</option>
+              <option value="kerala">Kerala</option>
+              <option value="madhya pradesh">Madhya Pradesh</option>
+              <option value="maharashtra">Maharashtra</option>
+              <option value="manipur">Manipur</option>
+              <option value="meghalaya">Meghalaya</option>
+              <option value="mizoram">Mizoram</option>
+              <option value="nagaland">Nagaland</option>
+              <option value="odisha">Odisha</option>
+              <option value="punjab">Punjab</option>
+              <option value="rajasthan">Rajasthan</option>
+              <option value="sikkim">Sikkim</option>
+              <option value="tamilnadu">Tamil Nadu</option>
+              <option value="telangana">Telangana</option>
+              <option value="tripura">Tripura</option>
+              <option value="uttar pradesh">Uttar Pradesh</option>
+              <option value="uttarakhand">Uttarakhand</option>
+              <option value="west bengal">West Bengal</option>
+              <option value="andaman nicobar">Andaman and Nicobar Islands</option>
+              <option value="chandigarh">Chandigarh</option>
+              <option value="dadra nagar haveli daman diu">Dadra and Nagar Haveli and Daman and Diu</option>
+              <option value="lakshadweep">Lakshadweep</option>
+              <option value="delhi">Delhi</option>
+              <option value="puducherry">Puducherry</option>
+              <option value="ladakh">Ladakh</option>
+              <option value="jammu kashmir">Jammu and Kashmir</option>
+            </select><br/>
+            <input type="number" id="rent" placeholder="Rent Price" required><br/>
+            <select id="gender" required>
+                <option value="" disabled selected>Looking for</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+            </select><br/>
+           <label>Upload your image here</label> <input type="file" id="photo" accept="image/*" required><br/>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('roomForm');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const name = document.getElementById('name').value;
+            const block = document.getElementById('block').value;
+            const street = document.getElementById('street').value;
+            const area = document.getElementById('area').value;
+            const city = document.getElementById('city').value;
+            const landmark = document.getElementById('landmark').value;
+            const location = document.getElementById('location').value;
+            const rent = document.getElementById('rent').value;
+            const gender = document.getElementById('gender').value;
+            const photoInput = document.getElementById('photo');
+            const photo = photoInput.files[0];
+
+            // Check if a photo is selected
+            if (photo) {
+                // Create a FileReader to read the uploaded file
+                const reader = new FileReader();
+                reader.onloadend = function () {
+                    // Create an object to store the room details
+                    const roomDetails = {
+                        name,
+                        block,
+                        street,
+                        area,
+                        city,
+                        landmark,
+                        location,
+                        rent,
+                        gender,
+                        photo: reader.result // Use FileReader result for the photo URL
+                    };
+
+                    // Get existing rooms from local storage or initialize an empty array
+                    const rooms = JSON.parse(localStorage.getItem('rooms')) || [];
+
+                    // Add the new room details to the array
+                    rooms.push(roomDetails);
+
+                    // Store the updated array back to local storage
+                    localStorage.setItem('rooms', JSON.stringify(rooms));
+
+                    // Clear form fields
+                    form.reset();
+
+                    // Optionally redirect to index.html after submission
+                    window.location.href = 'index.html';
+                };
+                // Read the image as a data URL
+                reader.readAsDataURL(photo);
+            } else {
+                alert('Please select an image before submitting.');
+            }
+        });
+        
+    </script>
+
+</body>
+</html>

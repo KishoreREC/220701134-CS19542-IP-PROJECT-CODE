@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roomie Match - Home</title>    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- jQuery library -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<style>
+
+    /* Modal (background) */
+/* Modal (background) */
+/* Modal (background) */
+/* Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.6); /* Black background with opacity */
+    overflow: hidden; /* Disable scrolling */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Modal width */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100; /* Keep modal content above everything else */
+    max-height: 80vh; /* Limit modal height to fit within screen */
+    overflow: hidden; /* Disable internal scrolling */
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 28px;
+    font-weight: bold;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 101;
+    opacity: 0.5; /* Semi-transparent, indicates disabled */
+/* Disable click */
+}
+
+/* To enable the close button after login */
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.filter-btn{
+    margin-top:30px;
+    border-radius:20px;
+    border-style:none;
+    background-color:lightgreen;
+    width:100px;
+    margin-right:20px;
+}
+.filter-btn1{
+    margin-right:20px;
+    margin-top:30px;
+    border-radius:20px;
+    border-style:none;
+    background-color:lightgreen;
+    width:200px;
+}
+/* Blur the background when the modal is open */
+.background-blur {
+    filter: blur(5px);
+}
+
+/* Modal iframe styling */
+.iframe-login {
+    width: 100%;
+    height: 400px; /* Adjust height according to your login page */
+    border: none;
+}
+
+
+</style>
+<body>
+
+   
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <h1>Roomie Match</h1>
+        </div>
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a href="post-room.html">Find Your Roomate</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+    </nav>
+
+    <div class="main-content d-flex flex-column">
+        <div>
+            <p class="ml-5">Find Male and Female roomies in Chennai<span><i class="material-icons" style="font-size:15px;color:red">add_location</i></span> </p>
+            <div class="d-flex flex-row">
+                <form class="example" action="">
+                    <input class="ml-5"type="text" id="myInput" placeholder=" Find Your Perfect Roommate, Share Your Ideal Space in Chennai&#128205;"name="search">
+                </form>
+                <button class="sort" id="sort">
+                    <i class="fa fa-sort"></i>
+                </button>
+            </div>
+            
+            <!-- Filter and Sort Options (initially hidden) -->
+            <div id="div1" style="display: none;">
+                <button id="showAll" class="filter-btn" style="margin-left:200px;">Show All</button>
+                <button id="filterMale" class="filter-btn">Male</button>
+                <button id="filterFemale" class="filter-btn">Female</button>
+                <button id="filterOthers" class="filter-btn">Others</button>
+              
+
+                <button id="sortLow" class="filter-btn1">Rent: Low to High</button>
+                <button id="sortHigh" class="filter-btn1">Rent: High to Low</button>
+            </div>
+        
+            <!-- Login Modal -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <iframe src="login.html" class="iframe-login"></iframe>
+    </div>
+</div>
+
+            <div class="product-list mt-5 ml-5" id="productList">
+                <!-- Cards will be dynamically generated here -->
+            </div>
+            <footer>
+                <div class="rounded-social-buttons mt-5">
+                                  <a class="social-button facebook" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                  <a class="social-button twitter" href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                                  <a class="social-button linkedin" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                  <a class="social-button tiktok" href="https://www.tiktok.com/" target="_blank"><i class="fab fa-tiktok"></i></a>
+                                  <a class="social-button youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                                  <a class="social-button instagram" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                              </div>
+              </footer>
+    
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('loginModal');
+    const span = document.getElementsByClassName('close')[0];
+
+    // Check if user is not logged in (using localStorage)
+    if (!localStorage.getItem('isLoggedIn')) {
+        showLoginModal();
+    }
+
+    // Function to show the login modal and blur the background
+    function showLoginModal() {
+        modal.style.display = 'block';
+        document.body.classList.add('modal-open'); // Blur background
+    }
+
+    // Close modal when clicking on the 'x'
+    span.onclick = function() {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open'); // Remove blur
+    };
+
+    // Close the modal if the user clicks outside the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open'); // Remove blur
+        }
+    };
+
+    // For testing - after login, set logged in status in localStorage
+    document.querySelector('.navbar').addEventListener('click', function() {
+        // Set login status (simulate login)
+        localStorage.setItem('isLoggedIn', 'true');
+    });
+});
+
+    //start
+   $('#sort').click(function () {
+               $('#div1').toggle(); // Toggle show/hide
+           });
+           
+    
+    
+    // F// Function to create a room card
+// Function to create a room card
+// Function to create a room card
+function filterRoomsByCity(searchTerm) {
+    const productList = document.getElementById('productList');
+    const rooms = JSON.parse(localStorage.getItem('rooms')) || [];
+
+    // Clear existing cards
+    productList.innerHTML = '';
+
+    // Filter rooms by the search term (location/city)
+    const filteredRooms = rooms.filter(room => {
+    // Combine area, city, landmark, street, and block into one search string
+    const roomDetails = `
+        ${room.area} 
+        ${room.city} 
+        ${room.landmark} 
+        ${room.street} 
+        ${room.block} 
+        ${room.location}
+    `.toLowerCase();
+
+    // Check if the search term is found in the combined string
+    return roomDetails.includes(searchTerm.toLowerCase());
+});
+
+if (filteredRooms.length > 0) {
+    filteredRooms.forEach((room, index) => {
+        const card = createCard(room, index); // Pass index to createCard for unique key
+        productList.appendChild(card);
+    });
+} else {
+    productList.innerHTML = '<p>No rooms found for the specified location.</p>';
+}
+
+}
+
+// Add event listener to search input field (id="myInput")
+document.getElementById('myInput').addEventListener('input', function() {
+    const searchTerm = this.value; // Get the value entered in the search input
+    filterRoomsByCity(searchTerm); // Call the filter function with the search term
+});
+function createCard(room, index) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.setAttribute('data-index', index); // Add a unique identifier based on the index
+
+    card.innerHTML = `
+        <img src="${room.photo}" alt="${room.name}" class="product-image">
+        <h3>${room.name}</h3>
+        <p>No.${room.block}, ${room.street}</p>
+        <p>${room.area}, ${room.city}</p>
+        <p>Landmark:${room.landmark}</p>
+        <p>${room.location}</p>
+        <p>Rent Price: ₹${room.rent}</p>
+        <p>Looking for: ${room.gender.charAt(0).toUpperCase() + room.gender.slice(1)}</p>
+        <button class="delete-button" data-index="${index}">Remove</button>
+    `;
+
+    const deleteButton = card.querySelector('.delete-button');
+    deleteButton.addEventListener('click', function() {
+        removeRoom(index); // Use the index instead of room id to remove the room
+    });
+
+    return card;
+}
+
+// Updated removeRoom function
+function removeRoom(index) {
+    let rooms = JSON.parse(localStorage.getItem('rooms')) || [];
+
+    // Remove the room at the specific index
+    rooms.splice(index, 1);
+
+    // Update localStorage with the new array of rooms
+    localStorage.setItem('rooms', JSON.stringify(rooms));
+
+    // Reload the rooms to reflect the changes
+    loadRooms();
+}
+
+// Function to load all rooms from localStorage
+function loadRooms() {
+    const productList = document.getElementById('productList');
+    const rooms = JSON.parse(localStorage.getItem('rooms')) || [];
+
+    // Clear existing cards
+    productList.innerHTML = '';
+
+    // Display all rooms
+    rooms.forEach((room, index) => {
+        const card = createCard(room, index); // Use index in createCard
+        productList.appendChild(card);
+    });
+}
+
+// Load rooms on page load
+loadRooms();
+
+// Load rooms on page load (if necessary)
+// loadRooms();
+
+
+
+        // Filter rooms by gender
+        function filterByGender(gender) {
+            const productList = document.getElementById('productList');
+            const rooms = JSON.parse(localStorage.getItem('rooms')) || [];
+
+            // Clear existing cards
+            productList.innerHTML = '';
+
+            // Filter and display rooms by gender
+            const filteredRooms = rooms.filter(room => room.gender.toLowerCase() === gender.toLowerCase());
+            if (filteredRooms.length > 0) {
+                filteredRooms.forEach((room) => {
+                    const card = createCard(room);
+                    productList.appendChild(card);
+                });
+            } else {
+                productList.innerHTML = '<p>No rooms found for the selected gender.</p>';
+            }
+        }
+        function filterByRent(order) {
+                const productList = document.getElementById('productList');
+                const rooms = JSON.parse(localStorage.getItem('rooms')) || [];
+                productList.innerHTML = '';
+                const sortedRooms = rooms.sort((a, b) => {
+                    return order === 'low' ? a.rent - b.rent : b.rent - a.rent;
+                });
+
+                sortedRooms.forEach((room, index) => {
+                    const card = createCard(room, index);
+                    productList.appendChild(card);
+                });
+            }
+        // Add event listeners for filter buttons
+        document.getElementById('showAll').addEventListener('click', loadRooms); // Show all rooms
+        document.getElementById('filterMale').addEventListener('click', () => filterByGender('male')); // Male rooms
+        document.getElementById('filterFemale').addEventListener('click', () => filterByGender('female')); // Female rooms
+        document.getElementById('filterOthers').addEventListener('click', () => filterByGender('others')); // Others
+        document.getElementById('sortLow').addEventListener('click', () => filterByRent('low'));
+            document.getElementById('sortHigh').addEventListener('click', () => filterByRent('high'));
+
+       
+        // Load all rooms on page load
+        loadRooms();
+    </script>
+            
+        
+
+    
+    
+
+    </body>
+    </html>
